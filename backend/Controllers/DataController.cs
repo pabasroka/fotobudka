@@ -15,13 +15,6 @@ public class DataController : ControllerBase
         _dataService = dataService;
     }
     
-    [HttpGet]
-    public IActionResult Get([FromBody] string FullDateTime)
-    {
-        return Ok(new[] { new Data() });
-        // return PDF;
-    }
-
     [HttpPost]
     public IActionResult SaveData([FromBody] Data data)
     {

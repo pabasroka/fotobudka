@@ -1,15 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "eKliP1beuG6iSwreDtf8ndm99qO9wBdy7XJlgvWCe8GUp5l0BL2k2U34yCV01oMAFWl8YyxEix+uI4s3sbpFbA==",
+  "dgSpecHash": "QCOt8s1h2loCoyi5gdYGifWB0DGPXQBtqyW9yC6w7kj9Z8aQ2rFfMB2NkrHwAhIAWmV10JNJxTYN8FQtviof9w==",
   "success": true,
   "projectFilePath": "C:\\CSharp\\fotobudka\\backend\\backend\\backend.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Paba\\.nuget\\packages\\ironpdf\\2022.6.6115\\ironpdf.2022.6.6115.nupkg.sha512",
+    "C:\\Users\\Paba\\.nuget\\packages\\ironpdf.native.chrome.windows\\2022.6.6075\\ironpdf.native.chrome.windows.2022.6.6075.nupkg.sha512",
+    "C:\\Users\\Paba\\.nuget\\packages\\ironpdf.slim\\2022.6.6115\\ironpdf.slim.2022.6.6115.nupkg.sha512",
     "C:\\Users\\Paba\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Paba\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.1.0\\microsoft.extensions.logging.abstractions.2.1.0.nupkg.sha512",
+    "C:\\Users\\Paba\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\Paba\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Paba\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Paba\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\Paba\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\Paba\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
-    "C:\\Users\\Paba\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+    "C:\\Users\\Paba\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
+    "C:\\Users\\Paba\\.nuget\\packages\\system.drawing.common\\5.0.2\\system.drawing.common.5.0.2.nupkg.sha512"
   ],
   "logs": []
 }
