@@ -35,7 +35,8 @@ public class DataService : IDataService
             base64 = regex.Replace(data.Photo,string.Empty);
             SaveImage(path, "photo", base64);
         }
-        else if (data.Banner is not null)
+
+        if (data.Banner is not null)
         {
             base64 = regex.Replace(data.Banner,string.Empty);
             SaveImage(path, "banner", base64);

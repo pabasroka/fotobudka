@@ -43,18 +43,21 @@ public class PdfBuilderService : IPdfBuilderService
       border: none;
     }
     td {
-      width: 25%;
+      width: 30%;
       text-align: center;
       word-wrap: break-word;
       line-height: 0;
+    }
+    .banner {
+      width: 20%
     }
     img {
       width: 100%;
     }
     .rotate {
       color: white;
-      writing-mode: vertical-lr;
-      text-orientation: mixed;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
       font-size: 20px;
       font-weight: 700;
     }
