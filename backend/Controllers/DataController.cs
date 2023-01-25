@@ -14,7 +14,7 @@ public class DataController : ControllerBase
     {
         _dataService = dataService;
     }
-    
+
     [HttpPost]
     public IActionResult SaveData([FromBody] Data data)
     {

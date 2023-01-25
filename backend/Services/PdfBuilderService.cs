@@ -11,19 +11,18 @@ public class PdfBuilderService : IPdfBuilderService
 {
     public void BuildPdf(string path, string? text)
     {
-        string[] images = Directory.GetFiles(path);
-        IEnumerable<string> photos = images.Where(f => f.Contains("photo"));
-        string banner = images.First(f => f.Contains("baner"));
+        var images = Directory.GetFiles(path);
+        var photos = images.Where(f => f.Contains("photo"));
+        var banner = images.First(f => f.Contains("banner"));
 
-        string ImgHtml = "";
-        string htmlContent = @"<!DOCTYPE html>
+        var htmlContent = @"<!DOCTYPE html>
 <html lang='en'>
 <head>
   <meta charset='UTF-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <title>Pdf</title>
-  <style>
+    <style>
     body {
       margin: 0;
       padding: 0;
@@ -37,66 +36,68 @@ public class PdfBuilderService : IPdfBuilderService
       justify-content: center;
       width: 100%;
       height: 100%;
+      background: #c0c0c0;
     }
     table {
       width: 100%;
+      border: none;
     }
     td {
-      width: 50%;
+      width: 25%;
+      text-align: center;
+      word-wrap: break-word;
+      line-height: 0;
     }
     img {
-      width: 5cm;
+      width: 100%;
     }
-    .banner {
-      transform: rotate(90deg);
-    color: green;
+    .rotate {
+      color: white;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      font-size: 20px;
+      font-weight: 700;
     }
   </style>
 </head>
 <body>
   <div class='wrapper'>
-    <h1>@Title</h1>
-    <table>
+    <table cellspacing='0' cellpadding='0'>
       @Table
     </table>
   </div>
 </body>
 </html>";
-        
-        // if (text is not null)
-        // {
-        //   htmlContent = ReplaceFirstOccurrence(htmlContent, "@Title", text);
-        // }
 
-        string table = "";
-        int numberOfPhotos = photos.Count();
-        string bannerText = "";
+        var table = "";
+        var numberOfPhotos = photos.Count();
+        var bannerText = "";
         if (text is not null)
         {
-          bannerText = @$"<td class='banner' rowspan='{numberOfPhotos}' background='@BannerImage'>{text}</td>";
+          bannerText = @$"<td class='banner' rowspan='{numberOfPhotos}' background='@BannerImage'><span class='rotate'>{text}</span></td>";
         }
 
         foreach (var (photo, index) in photos.Select((value, i) => (value, i)))
         {
-            byte[] jpgBinaryData = File.ReadAllBytes(photo);
-            string ImgDataURI = @"data:image/png;base64," + Convert.ToBase64String(jpgBinaryData);
+            var jpgBinaryData = File.ReadAllBytes(photo);
+            var imgDataUri = @"data:image/png;base64," + Convert.ToBase64String(jpgBinaryData);
             if (index == 0 && !string.IsNullOrEmpty(bannerText))
             {
-              table += @$"<tr><td><img src='{ImgDataURI}'></td>{bannerText}<td><img src='{ImgDataURI}'></td>{bannerText}</tr>";
+              table += @$"<tr><td><img src='{imgDataUri}'></td>{bannerText}<td><img src='{imgDataUri}'></td>{bannerText}</tr>";
             }
             else
             {
-              table += @$"<tr><td><img src='{ImgDataURI}'></td><td><img src='{ImgDataURI}'></td></tr>";
+              table += @$"<tr><td><img src='{imgDataUri}'></td><td><img src='{imgDataUri}'></td></tr>";
             }
         }
+
+        var bannerBinaryData = File.ReadAllBytes(banner);
+        var bannerDataUri = @"data:image/png;base64," + Convert.ToBase64String(bannerBinaryData);
+
+        htmlContent = ReplaceAllOccurrence(htmlContent, "@Table", table);
+        htmlContent = ReplaceAllOccurrence(htmlContent, "@BannerImage", bannerDataUri);
         
-        byte[] bannerBinaryData = File.ReadAllBytes(banner);
-        string bannerDataURI = @"data:image/png;base64," + Convert.ToBase64String(bannerBinaryData);
-        
-        htmlContent = ReplaceFirstOccurrence(htmlContent, "@Table", table);
-        htmlContent = ReplaceFirstOccurrence(htmlContent, "@BannerImage", bannerDataURI);
-        
-        ChromePdfRenderer renderer = new ChromePdfRenderer
+        var renderer = new ChromePdfRenderer
         {
             RenderingOptions =
             {
@@ -107,13 +108,12 @@ public class PdfBuilderService : IPdfBuilderService
                 MarginBottom = 0
             }
         };
-        PdfDocument pdfDocument = renderer.RenderHtmlAsPdf(htmlContent);
+        var pdfDocument = renderer.RenderHtmlAsPdf(htmlContent);
         pdfDocument.SaveAs($"{path}/result.pdf");
     }
     
-    private static string ReplaceFirstOccurrence(string source, string find, string replace)
+    private static string ReplaceAllOccurrence(string source, string find, string replace)
     {
-      int place = source.IndexOf(find, StringComparison.Ordinal);
-      return source.Remove(place, find.Length).Insert(place, replace);
+        return source.Replace(find, replace);
     }
 }
